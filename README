@@ -1,0 +1,21 @@
+Usage:
+Have python3.10 installed locally
+From top level coinroutes/
+
+1. Create python3.10 virtual environment
+    # python3.10 -m venv .venv
+
+2. Install requirements
+    # pip3 install -r requirements.txt
+
+3. Activate python env
+    # . .venv/bin/activate 
+
+4. Run
+    # python btc_aggregator.py 
+    - optional flag: --amt, -A (float) amount of bitcoin to transact
+    ex. 
+    # python btc_aggregator.py -A 100.23
+    Default value is 10
+
+5. Output: USD required to buy/sell is printed to terminal
