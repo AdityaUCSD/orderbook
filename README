@@ -1,6 +1,6 @@
 Usage:
 Have python3.10 installed locally
-From top level coinroutes/
+From top level orderbook/
 
 1. Create python3.10 virtual environment
     # python3.10 -m venv .venv
