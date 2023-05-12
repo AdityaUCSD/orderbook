@@ -56,7 +56,7 @@ def txn_price(book, amount=10):
         amount -= book[i][1]
         price += (book[i][0] * book[i][1])
         i += 1
-        if i == 150:
+        if i == len(book):
             return total - amount, price
     price += (amount * book[i][0])
     return total, price

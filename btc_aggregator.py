@@ -10,6 +10,7 @@ from orderbook_tooling.components import *
 def parse_args():
     about_app = 'This app aggregates CoinBase Pro, Kraken and Gemini exchanges \
                     to determine purchase/sell prices for BTC'
+                    
     parser = argparse.ArgumentParser(description=about_app)
     parser.add_argument('--amt', '-A',
                         type=str,
