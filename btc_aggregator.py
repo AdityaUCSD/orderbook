@@ -37,10 +37,20 @@ if __name__ == '__main__':
 
         # calculate buy/sell based on amount input
         sold, sell_price = txn_price(bids, amount)
-        print(f'{sold} BTC sellable for: ${sell_price}')
+        print(f'{sold} BTC sellable for:\t${sell_price}')
 
         purchased, buy_price = txn_price(asks, amount)
-        print(f'{purchased} BTC purchasable for: ${buy_price}')
+        print(f'{purchased} BTC buyable for:\t${buy_price}')
+
+        print('')
+        print('To achieve the sell price, submit market order sells to the following exchanges for the shown btc amounts')
+        purchased, buy_price = gen_limit_order(bids, amount)
+
+        print('')
+        print('To achieve the buy price, submit market order buys to the following exchanges for the shown btc amounts')
+        purchased, buy_price = gen_limit_order(asks, amount)
+
+
 
     except Exception as ex:
         print(ex)
