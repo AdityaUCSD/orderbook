@@ -34,7 +34,7 @@ if __name__ == '__main__':
         #parse amount from cmd line
         args = parse_args()
         amount = args.amt
-        amount = float(amount) if amount else 10
+        amount = parse_amt(amount)
 
         # get and merge order books
         bids, asks = merge_order_books()
@@ -47,15 +47,7 @@ if __name__ == '__main__':
         print(f'{purchased} BTC buyable for:\t${buy_price}')
 
         if args.stg:
-            print('')
-            print('To achieve the sell price, submit market order sells to the following exchanges for the shown btc amounts')
-            strat = gen_limit_order(bids, amount)
-            print(strat)
-
-            print('')
-            print('To achieve the buy price, submit market order buys to the following exchanges for the shown btc amounts')
-            strat = gen_limit_order(asks, amount)
-            print(strat)
+            print_strat(bids, asks, amount)
 
     except Exception as ex:
         print(ex)

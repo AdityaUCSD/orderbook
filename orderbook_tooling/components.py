@@ -1,4 +1,5 @@
 import requests
+from orderbook_tooling.error_messages import *
 
 def get_coinbase_btc_orderbook():
     response = requests.get('https://api.pro.coinbase.com/products/BTC-USD/book?level=2').json()
@@ -48,6 +49,15 @@ def merge_order_books():
     asks = sorted(asks, key=lambda x: x[0])
 
     return bids, asks
+
+def parse_amt(amount):
+    try:
+        amount = float(amount) if amount else 10 
+    except:
+        raise Exception(invalid_type_amount)
+    if amount < 0:
+        raise Exception(negative_amount)
+    return amount
 
 # Grab next listing, combine with moving sum
 def txn_price(book, amount=10):
@@ -130,3 +140,15 @@ def gen_strat_str(limit_order, amount):
         strat_str += (f'{ex} Limit Order:\t{amount}BTC at\t${price}\tTotal = ${price * amount}\n')
     # remove trailing newline + return
     return strat_str[:-2]
+
+
+def print_strat(bids, asks, amount):
+    print('')
+    print('To achieve the sell price, submit market order sells to the following exchanges for the shown btc amounts')
+    strat = gen_limit_order(bids, amount)
+    print(strat)
+
+    print('')
+    print('To achieve the buy price, submit market order buys to the following exchanges for the shown btc amounts')
+    strat = gen_limit_order(asks, amount)
+    print(strat)
