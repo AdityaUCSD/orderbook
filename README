@@ -18,4 +18,4 @@ From top level orderbook/
     # python btc_aggregator.py -A 100.23
     Default value is 10
 
-5. Output: USD required to buy/sell is printed to terminal
+5. Output: USD required to buy/sell and exchange split is printed to terminal
