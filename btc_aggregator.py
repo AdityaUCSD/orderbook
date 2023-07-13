@@ -15,8 +15,12 @@ def parse_args():
     parser.add_argument('--amt', '-A',
                         type=str,
                         required=False,
-                        default='',
+                        default=10,
                         help='Amount of BTC to buy/sell')
+    parser.add_argument('--stg', '-S',
+                        action='store_true',
+                        required=False,
+                        help='Prints buy and sell strategy to achieve optimal price')
 
     args = parser.parse_args()
     return args
@@ -42,15 +46,16 @@ if __name__ == '__main__':
         purchased, buy_price = txn_price(asks, amount)
         print(f'{purchased} BTC buyable for:\t${buy_price}')
 
-        print('')
-        print('To achieve the sell price, submit market order sells to the following exchanges for the shown btc amounts')
-        purchased, buy_price = gen_limit_order(bids, amount)
+        if args.stg:
+            print('')
+            print('To achieve the sell price, submit market order sells to the following exchanges for the shown btc amounts')
+            strat = gen_limit_order(bids, amount)
+            print(strat)
 
-        print('')
-        print('To achieve the buy price, submit market order buys to the following exchanges for the shown btc amounts')
-        purchased, buy_price = gen_limit_order(asks, amount)
-
-
+            print('')
+            print('To achieve the buy price, submit market order buys to the following exchanges for the shown btc amounts')
+            strat = gen_limit_order(asks, amount)
+            print(strat)
 
     except Exception as ex:
         print(ex)

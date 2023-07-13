@@ -13,9 +13,9 @@ From top level orderbook/
 
 4. Run
     # python btc_aggregator.py 
-    - optional flag: --amt, -A (float) amount of bitcoin to transact
+    - optional arg: --amt, -A (float) amount of bitcoin to transact (default 10)
+    - optional flag: --stg, -S display buy/sell strategy per exchange
     ex. 
-    # python btc_aggregator.py -A 100.23
-    Default value is 10
+    # python btc_aggregator.py -A 10.23 -S
 
-5. Output: USD required to buy/sell and exchange split is printed to terminal
+5. Output: USD required to buy/sell and exchange split (if requested) is printed to terminal
